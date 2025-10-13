@@ -66,63 +66,63 @@ System.out.println("Goodbye.");
 
 // menu
 private void addItem() {
-    System.out.print(C.SECTION_PROMPT);
-    String section = sc.nextLine().trim().toLowerCase();
+System.out.print(C.SECTION_PROMPT);
+String section = sc.nextLine().trim().toLowerCase();
 
-    InventoryItem item = switch (section) {
-        case "a" -> new Painkiller();
-        case "b" -> new Bandage();
-        case "c" -> new Equipment();
-        default -> null;
-    };
-    if (item == null) {
-        System.out.println("Unknown section.");
-        return;
-    }
+InventoryItem item = switch (section) {
+case "a" -> new Painkiller();
+case "b" -> new Bandage();
+case "c" -> new Equipment();
+default -> null;
+};
+if (item == null) {
+System.out.println("Unknown section.");
+return;
+}
 
-    try {
-        item.updateFromScanner(sc);
-        items.add(item);
-        System.out.println("Item added.");
-    } catch (ExpiredItemException e) {
-        System.out.println("Custom validation: " + e.getMessage());
-    } catch (IllegalArgumentException e) {
-        System.out.println("Invalid value: " + e.getMessage());
-    }
+try {
+item.updateFromScanner(sc);
+items.add(item);
+System.out.println("Item added.");
+} catch (ExpiredItemException e) {
+System.out.println("Custom validation: " + e.getMessage());
+} catch (IllegalArgumentException e) {
+System.out.println("Invalid value: " + e.getMessage());
+}
 }
 
 private void listItems() {
-    if (items.isEmpty()) {
-        System.out.println("\nNo items in inventory.");
-        return;
-    }
-    System.out.println("\n--- Inventory ---");
-    for (int i = 0; i < items.size(); i++) {
-        System.out.println("[" + i + "] " + items.get(i));
+if (items.isEmpty()) {
+System.out.println("\nNo items in inventory.");
+return;
+}
+System.out.println("\n--- Inventory ---");
+for (int i = 0; i < items.size(); i++) {
+System.out.println("[" + i + "] " + items.get(i));
     }
 }
 
 private void updateItem() {
-    if (items.isEmpty()) {
-        System.out.println("No items to update.");
-        return;
-    }
-    listItems();
-    System.out.print("Enter index to update: ");
-    try {
-        int idx = Integer.parseInt(sc.nextLine().trim());
-        if (idx < 0 || idx >= items.size()) {
-            System.out.println("Index out of range.");
-            return;
+if (items.isEmpty()) {
+System.out.println("No items to update.");
+return;
+}
+listItems();
+System.out.print("Enter index to update: ");
+try {
+int idx = Integer.parseInt(sc.nextLine().trim());
+if (idx < 0 || idx >= items.size()) {
+System.out.println("Index out of range.");
+return;
         }
-        items.get(idx).updateFromScanner(sc, true);
-        System.out.println("Item updated.");
+items.get(idx).updateFromScanner(sc, true);
+System.out.println("Item updated.");
     } catch (NumberFormatException e) {
-        System.out.println("Please enter a whole-number index (e.g., 0, 1, 2).");
-    } catch (ExpiredItemException e) {
-        System.out.println("Custom validation: " + e.getMessage());
-    } catch (IllegalArgumentException e) {
-        System.out.println("Invalid value: " + e.getMessage());
+System.out.println("Please enter a whole-number index (e.g., 0, 1, 2).");
+} catch (ExpiredItemException e) {
+System.out.println("Custom validation: " + e.getMessage());
+} catch (IllegalArgumentException e) {
+System.out.println("Invalid value: " + e.getMessage());
     }
 }
 }
