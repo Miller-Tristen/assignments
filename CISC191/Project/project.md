@@ -1,7 +1,7 @@
 # Task
-
+Create a database in SQL, insert data using SQL, and finally using GUI create a text box which takes user input and another window to display said result.
 # Challenges 
-
+Bringing all of this code together, creating said database and making sure it can work properly. 
 # Code 
 ```java
 package autompg;
